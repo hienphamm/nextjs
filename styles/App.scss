@@ -1,0 +1,7 @@
+@import "./Variables.scss";
+@import "~nprogress.css";
+
+a:focus,
+a.active {
+  color: $primary-color;
+}

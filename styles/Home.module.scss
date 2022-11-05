@@ -1,0 +1,33 @@
+@import "./Responsive.scss";
+
+.inputSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerContent {
+  margin-top: 40px;
+}
+
+.cards {
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+
+  @include Responsive(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include Responsive(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include Responsive(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include Responsive(xs) {
+    grid-template-columns: repeat(4 1fr);
+  }
+}

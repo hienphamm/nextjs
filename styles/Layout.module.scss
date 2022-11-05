@@ -1,0 +1,19 @@
+@import "./Responsive.scss";
+.container {
+  @include Responsive(md) {
+    margin: 0 175px;
+  }
+  @include Responsive(sm) {
+    margin: 0 50px;
+  }
+  @include Responsive(xs) {
+    margin: 0 25px;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
