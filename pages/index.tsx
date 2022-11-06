@@ -1,9 +1,16 @@
-import { Pane } from "evergreen-ui";
-import Input from "./components/Input";
 import styles from "@app/styles/Home.module.scss";
+import { Pane } from "evergreen-ui";
+import { IPost } from "models/post";
+import { GetStaticProps } from "next";
+import { getPosts } from "services/post";
 import Card from "./components/Card";
+import Input from "./components/Input";
 
-export default function Home() {
+interface Props {
+  posts: IPost[];
+}
+
+export default function Home({ posts }: Props) {
   return (
     <Pane>
       <div className={styles.inputSearch}>
@@ -12,13 +19,26 @@ export default function Home() {
 
       <div className={styles.containerContent}>
         <div className={styles.cards}>
-          <Card title="Test" content="hello world" url="/about" />
-          <Card title="Test" content="hello world" url="/about" />
-          <Card title="Test" content="hello world" url="/about" />
-          <Card title="Test" content="hello world" url="/about" />
-          <Card title="Test" content="hello world" url="/about" />
+          {posts.map((post, index) => (
+            <Card
+              key={index}
+              title={post.title}
+              content={post.content}
+              slug={`posts/${post.slug}`}
+              image={post.image}
+            />
+          ))}
         </div>
       </div>
     </Pane>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { posts } = (await getPosts()).data;
+  return {
+    props: {
+      posts: posts,
+    },
+  };
+};

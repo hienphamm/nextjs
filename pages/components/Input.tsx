@@ -5,7 +5,11 @@ type Props = {};
 
 function Input({}: Props) {
   return (
-    <TextInput name="text-input-name" placeholder="Text input placeholder..." />
+    <TextInput
+      size={"large"}
+      name="text-input-name"
+      placeholder="Type to search..."
+    />
   );
 }
 

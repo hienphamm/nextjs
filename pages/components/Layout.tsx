@@ -30,22 +30,23 @@ function Header() {
       marginTop="20px"
       marginBottom="20px"
     >
-      <Tablist marginBottom={16} marginRight={24}>
+      <Tablist marginBottom={16}>
         {tabs.map((tab, index) => (
-          <Tab
+          <Link
             key={index}
-            id={String(index)}
-            onSelect={() => setSelectedIndex(index)}
-            isSelected={index === selectedIndex}
-            aria-controls={`panel-${index}`}
+            className={`link ${router.pathname === tab.href ? "active" : ""}`}
+            href={tab.href}
           >
-            <Link
-              className={router.pathname === tab.href ? "active" : ""}
-              href={tab.href}
+            <Tab
+              id={String(index)}
+              onSelect={() => setSelectedIndex(index)}
+              isSelected={index === selectedIndex}
+              aria-controls={`panel-${index}`}
+              size={"large"}
             >
               {tab.title}
-            </Link>
-          </Tab>
+            </Tab>
+          </Link>
         ))}
       </Tablist>
     </Pane>
@@ -55,7 +56,7 @@ function Header() {
 function Footer() {
   return (
     <div className={styles.footer}>
-      <Text>Blog created by Hien Pham</Text>
+      <Text size={500}>Blog created by Hien Pham</Text>
     </div>
   );
 }
