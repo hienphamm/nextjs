@@ -1,7 +1,8 @@
 import { Heading, Pane, Text } from "evergreen-ui";
 import { IPost } from "models/post";
 import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
+import dynamic from "next/dynamic";
+import React, { useState } from "react";
 import { getPost, getPostSlugs } from "services/post";
 
 type Props = {
@@ -9,12 +10,21 @@ type Props = {
 };
 
 function Post({ post }: Props) {
+  const SideSheet = dynamic(() => import("../components/SideSheet"));
+
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <Pane>
       <Heading size={700} marginBottom="20px">
         {post.title}
       </Heading>
       <Text>{post.content}</Text>
+      <button type="button" onClick={() => setIsVisible(true)}>
+        Click
+      </button>
+      {isVisible && (
+        <SideSheet isVisible={isVisible} onClose={() => setIsVisible(false)} />
+      )}
     </Pane>
   );
 }

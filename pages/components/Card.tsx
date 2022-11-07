@@ -1,7 +1,5 @@
 import { Heading, Pane, Text } from "evergreen-ui";
-import { truncate } from "lodash";
 import { IPost } from "models/post";
-import Image from "next/image";
 import Link from "next/link";
 
 function Card({
@@ -9,7 +7,8 @@ function Card({
   content,
   slug,
   image,
-}: Pick<IPost, "title" | "content" | "slug" | "image">) {
+  previewContent,
+}: Pick<IPost, "title" | "content" | "slug" | "image" | "previewContent">) {
   return (
     <Pane
       borderRadius={12}
@@ -22,14 +21,9 @@ function Card({
         <Heading is="h6" marginBottom="10px">
           {title}
         </Heading>
-        <Text>
-          {truncate(content, {
-            length: 250,
-            omission: "...",
-          })}
-        </Text>
+        <Text>{previewContent}</Text>
       </Link>
-      <Image width={200} height={150} src={image} alt="" />
+      {/* <Image width={200} height={150} src={image} alt="" /> */}
     </Pane>
   );
 }

@@ -26,6 +26,7 @@ export default function Home({ posts }: Props) {
               content={post.content}
               slug={`posts/${post.slug}`}
               image={post.image}
+              previewContent={post.previewContent}
             />
           ))}
         </div>
@@ -40,5 +41,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       posts: posts,
     },
+    revalidate: 30,
   };
 };
