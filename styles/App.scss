@@ -2,12 +2,17 @@
 @import "~nprogress/nprogress.css";
 
 a:focus,
-a.active {
+a.active span {
+  background-color: $blue-50;
   color: $primary-color;
 }
 
-a.link {
+a.link:not(.active) {
   margin-right: 8px;
+  span {
+    background-color: unset;
+    color: $default;
+  }
 }
 
 a {

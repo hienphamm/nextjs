@@ -20,6 +20,10 @@ function Header() {
       title: "About",
       href: "/about",
     },
+    {
+      title: "Popular",
+      href: "/popular",
+    },
   ]);
 
   return (
