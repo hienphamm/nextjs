@@ -17,7 +17,7 @@ function Card({
       wordBreak="break-all"
       cursor="pointer"
     >
-      <Link href={slug}>
+      <Link href={`/${slug}`}>
         <Heading is="h6" marginBottom="10px">
           {title}
         </Heading>

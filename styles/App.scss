@@ -7,11 +7,13 @@ a.active span {
   color: $primary-color;
 }
 
-a.link:not(.active) {
+a.link {
   margin-right: 8px;
-  span {
-    background-color: unset;
-    color: $default;
+  &:not(.active) {
+    span {
+      background-color: unset;
+      color: $default;
+    }
   }
 }
 

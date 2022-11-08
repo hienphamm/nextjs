@@ -1,11 +1,12 @@
-import type { AppProps } from "next/app";
-import Layout from "./components/Layout";
 import "@app/styles/App.scss";
-import { Router } from "next/router";
+import type { AppProps } from "next/app";
+import { Router, useRouter } from "next/router";
 import NProgress from "nprogress";
 import { useEffect } from "react";
+import Layout from "./components/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const { on, off } = Router.events;
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Layout>
-      <Component {...pageProps} />
+      <Component key={router.asPath} {...pageProps} />
     </Layout>
   );
 }

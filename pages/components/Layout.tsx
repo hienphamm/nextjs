@@ -42,7 +42,6 @@ function Header() {
             href={tab.href}
           >
             <Tab
-              suppressHydrationWarning={true}
               id={String(index)}
               onSelect={() => setSelectedIndex(index)}
               isSelected={index === selectedIndex}
