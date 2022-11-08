@@ -1,13 +1,22 @@
 import "@app/styles/App.scss";
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
-import { Router, useRouter } from "next/router";
+import { Router } from "next/router";
 import NProgress from "nprogress";
-import { useEffect } from "react";
-import Layout from "./components/Layout";
+import { ReactElement, ReactNode, useEffect } from "react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const { on, off } = Router.events;
+
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   useEffect(() => {
     const handleRouteStart = () => NProgress.start();
@@ -24,9 +33,5 @@ export default function App({ Component, pageProps }: AppProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <Layout>
-      <Component key={router.asPath} {...pageProps} />
-    </Layout>
-  );
+  return getLayout(<Component {...pageProps} />);
 }

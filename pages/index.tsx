@@ -2,15 +2,17 @@ import styles from "@app/styles/Home.module.scss";
 import { Pane } from "evergreen-ui";
 import { IPost } from "models/post";
 import { GetStaticProps } from "next";
+import { ReactElement } from "react";
 import { getPosts } from "services/post";
 import Card from "./components/Card";
 import Input from "./components/Input";
+import Layout from "./components/Layout";
 
 interface Props {
   posts: IPost[];
 }
 
-export default function Home({ posts }: Props) {
+const Home = ({ posts }: Props) => {
   return (
     <Pane>
       <div className={styles.inputSearch}>
@@ -33,7 +35,11 @@ export default function Home({ posts }: Props) {
       </div>
     </Pane>
   );
-}
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const { posts } = (await getPosts()).data;
@@ -44,3 +50,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 30,
   };
 };
+
+export default Home;
