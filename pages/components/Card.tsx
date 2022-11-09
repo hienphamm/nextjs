@@ -1,8 +1,13 @@
-import { Heading, Pane, Text } from "evergreen-ui";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Typography from "@mui/material/Typography";
+import { truncate } from "lodash";
 import { IPost } from "models/post";
+import Image from "next/image";
 import Link from "next/link";
 
-function Card({
+function ReviewCard({
   title,
   content,
   slug,
@@ -10,22 +15,26 @@ function Card({
   previewContent,
 }: Pick<IPost, "title" | "content" | "slug" | "image" | "previewContent">) {
   return (
-    <Pane
-      borderRadius={12}
-      padding={10}
-      border="default"
-      wordBreak="break-all"
-      cursor="pointer"
-    >
-      <Link href={`/${slug}`}>
-        <Heading is="h6" marginBottom="10px">
-          {title}
-        </Heading>
-        <Text>{previewContent}</Text>
-      </Link>
-      {/* <Image width={200} height={150} src={image} alt="" /> */}
-    </Pane>
+    <Link href={`/${slug}`}>
+      <Card
+        sx={{
+          height: "100%",
+          cursor: "pointer",
+        }}
+      >
+        <CardHeader title={title} subheader="September 14, 2016" />
+        <Image src={image} width={300} height={150} alt="" />
+        <CardContent>
+          <Typography variant="body2">
+            {truncate(previewContent, {
+              length: 180,
+              omission: "...",
+            })}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
 
-export default Card;
+export default ReviewCard;

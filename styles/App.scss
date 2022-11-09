@@ -1,23 +1,17 @@
 @import "./Variables.scss";
 @import "~nprogress/nprogress.css";
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
 
-a:focus,
-a.active span {
-  background-color: $blue-50;
-  color: $primary-color;
+html {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-a.link {
-  margin-right: 8px;
-  &:not(.active) {
-    span {
-      background-color: unset;
-      color: $default;
-    }
-  }
-}
-
-a {
+a,
+a:focus {
+  text-decoration: none;
   color: $gray-800;
   text-decoration: none;
 }

@@ -1,11 +1,9 @@
-import styles from "@app/styles/Home.module.scss";
-import { Pane } from "evergreen-ui";
+import { Grid } from "@mui/material";
 import { IPost } from "models/post";
 import { GetServerSideProps } from "next";
 import { ReactElement } from "react";
 import { getPosts } from "services/post";
 import Card from "./components/Card";
-import Input from "./components/Input";
 import Layout from "./components/Layout";
 
 interface Props {
@@ -14,26 +12,19 @@ interface Props {
 
 export default function Popular({ posts }: Props) {
   return (
-    <Pane>
-      <div className={styles.inputSearch}>
-        <Input />
-      </div>
-
-      <div className={styles.containerContent}>
-        <div className={styles.cards}>
-          {posts.map((post, index) => (
-            <Card
-              key={index}
-              title={post.title}
-              content={post.content}
-              slug={`posts/${post.slug}`}
-              image={post.image}
-              previewContent={post.previewContent}
-            />
-          ))}
-        </div>
-      </div>
-    </Pane>
+    <Grid container spacing={2}>
+      {posts.map((post: IPost, index) => (
+        <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+          <Card
+            title={post.title}
+            content={post.content}
+            slug={`posts/${post.slug}`}
+            image={post.image}
+            previewContent={post.previewContent}
+          />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
 

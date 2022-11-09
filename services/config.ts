@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV;
 
 let URL = "https://hienpham-blog-api.herokuapp.com/api/v1/";
 if (env == "development") {
-  URL = "http://localhost:3001/api/v1/";
+  URL = "http://localhost:3002/api/v1/";
 } else if (env == "production") {
   URL = "https://hienpham-blog-api.herokuapp.com/api/v1/";
 }

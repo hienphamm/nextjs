@@ -4,6 +4,10 @@ import type { AppProps } from "next/app";
 import { Router } from "next/router";
 import NProgress from "nprogress";
 import { ReactElement, ReactNode, useEffect } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { primaryColor } from "@app/styles/variables";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Container } from "@mui/material";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -12,6 +16,21 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: `${primaryColor}`,
+    },
+  },
+  typography: {
+    button: {
+      textTransform: "capitalize",
+      fontWeight: 600,
+      fontSize: "1rem",
+    },
+  },
+});
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const { on, off } = Router.events;
@@ -33,5 +52,16 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return getLayout(<Component {...pageProps} />);
+  return getLayout(
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container
+        sx={{
+          mt: 4,
+        }}
+      >
+        <Component {...pageProps} />
+      </Container>
+    </ThemeProvider>,
+  );
 }

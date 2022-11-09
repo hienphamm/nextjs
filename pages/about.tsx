@@ -1,4 +1,4 @@
-import { Heading } from "evergreen-ui";
+import { Typography } from "@mui/material";
 import { ReactElement } from "react";
 import Layout from "./components/Layout";
 import { NextPageWithLayout } from "./_app";
@@ -7,9 +7,9 @@ type Props = {};
 
 const About: NextPageWithLayout = ({}: Props) => {
   return (
-    <Heading textAlign="center" justifyContent="center">
+    <Typography textAlign="center" justifyContent="center">
       My name is {process.env.username}
-    </Heading>
+    </Typography>
   );
 };
 
