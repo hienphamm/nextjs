@@ -3,9 +3,9 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import { truncate } from "lodash";
-import { IPost } from 'models/post/post';
 import Image from "next/image";
 import Link from "next/link";
+import { IPost } from "src/models/post/post";
 
 function ReviewCard({
   title,
@@ -15,7 +15,7 @@ function ReviewCard({
   previewContent,
 }: Pick<IPost, "title" | "content" | "slug" | "image" | "previewContent">) {
   return (
-    <Link href={`/${slug}`}>
+    <Link href={`/${slug}`} replace>
       <Card
         sx={{
           height: "100%",

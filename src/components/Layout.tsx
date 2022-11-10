@@ -148,7 +148,7 @@ function Header() {
       })
       .catch((err) => {
         console.log(err);
-        enqueueSnackbar(err.message || "Failed to login", {
+        enqueueSnackbar(err?.message || "Failed to login", {
           variant: "error",
         });
       })
@@ -181,23 +181,24 @@ function Header() {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              NEWS
-            </Typography>
+            <Link href={"/"}>
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "white",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
+              >
+                NEWS
+              </Typography>
+            </Link>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton

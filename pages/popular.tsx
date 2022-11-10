@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
-import { IPost } from "models/post";
 import { GetServerSideProps } from "next";
 import { ReactElement } from "react";
+import { IPost } from "src/models/post/post";
 import { getPosts } from "src/services/post";
 import Card from "../src/components/Card";
 import Layout from "../src/components/Layout";
@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps<{
 
   return {
     props: {
-      posts: posts,
+      posts,
     },
   };
 };

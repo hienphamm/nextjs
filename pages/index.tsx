@@ -1,7 +1,9 @@
-import { Grid } from "@mui/material";
-import { IPost } from "models/post";
+import { Button, Grid } from "@mui/material";
 import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { ReactElement } from "react";
+import { IPost } from "src/models/post/post";
 import { getPosts } from "src/services/post";
 import Card from "../src/components/Card";
 import Layout from "../src/components/Layout";
@@ -12,19 +14,25 @@ interface Props {
 
 const Home = ({ posts }: Props) => {
   return (
-    <Grid container spacing={2}>
-      {posts.map((post: IPost, index) => (
-        <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-          <Card
-            title={post.title}
-            content={post.content}
-            slug={`posts/${post.slug}`}
-            image={post.image}
-            previewContent={post.previewContent}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Head>
+        <title>My page title</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Grid container spacing={2}>
+        {posts.map((post: IPost, index) => (
+          <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+            <Card
+              title={post.title}
+              content={post.content}
+              slug={`posts/${post.slug}`}
+              image={post.image}
+              previewContent={post.previewContent}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 
@@ -38,7 +46,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       posts: posts,
     },
-    revalidate: 30,
+    revalidate: 10,
   };
 };
 
