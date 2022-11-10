@@ -3,7 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import { truncate } from "lodash";
-import { IPost } from "models/post";
+import { IPost } from 'models/post/post';
 import Image from "next/image";
 import Link from "next/link";
 

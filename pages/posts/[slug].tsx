@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 import { IPost } from "models/post";
 import { GetStaticPaths, GetStaticProps } from "next";
-import Layout from "pages/components/Layout";
+import Layout from "src/components/Layout";
 import { ReactElement } from "react";
-import { getPost, getPostSlugs } from "services/post";
+import { getPost, getPostSlugs } from "src/services/post";
 
 type Props = {
   post: IPost;

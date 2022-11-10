@@ -2,9 +2,9 @@ import { Grid } from "@mui/material";
 import { IPost } from "models/post";
 import { GetServerSideProps } from "next";
 import { ReactElement } from "react";
-import { getPosts } from "services/post";
-import Card from "./components/Card";
-import Layout from "./components/Layout";
+import { getPosts } from "src/services/post";
+import Card from "../src/components/Card";
+import Layout from "../src/components/Layout";
 
 interface Props {
   posts: IPost[];

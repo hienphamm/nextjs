@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { ReactElement } from "react";
-import Layout from "./components/Layout";
+import Layout from "../src/components/Layout";
 import { NextPageWithLayout } from "./_app";
 
 type Props = {};

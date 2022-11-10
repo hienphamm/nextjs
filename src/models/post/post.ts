@@ -1,3 +1,18 @@
+import { Tag } from "models/tag/tag";
+
+export interface PostFilterParams {
+  start: number;
+  pageSize: number;
+  q: string;
+}
+
+export interface PaginationFilterParams {
+  page?: number;
+  pageSize: number;
+  postId?: string;
+  start?: number;
+}
+
 export interface IPost {
   _id: string;
   title: string;
@@ -10,7 +25,7 @@ export interface IPost {
   comment: string;
   readTime: number;
   slug: string;
-  // tags: Tag[];
+  tags: Tag[];
   previewContent: string;
   bookmarkedUpdatedAt: string;
   bookmarkedBy: string[];
