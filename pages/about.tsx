@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import Head from "next/head";
 import { ReactElement } from "react";
 import Layout from "../src/components/Layout";
 import { NextPageWithLayout } from "./_app";
@@ -7,9 +8,15 @@ type Props = {};
 
 const About: NextPageWithLayout = ({}: Props) => {
   return (
-    <Typography textAlign="center" justifyContent="center">
-      My name is {process.env.username}
-    </Typography>
+    <>
+      <Head>
+        <title>About</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Typography textAlign="center" justifyContent="center">
+        My name is {process.env.username}
+      </Typography>
+    </>
   );
 };
 

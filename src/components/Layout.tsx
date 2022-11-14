@@ -1,4 +1,3 @@
-import { blue600 } from "@app/styles/variables";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, Stack, TextField } from "@mui/material";
@@ -22,6 +21,7 @@ import JwtProvider from "src/utils/jwt";
 import CommonModal from "./Modal";
 import { useSnackbar } from "notistack";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { blue600 } from "@app/styles/variables";
 
 interface Props {
   children: JSX.Element;
@@ -64,7 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     [theme.breakpoints.up("sm")]: {
       width: "12ch",
       "&:focus": {
-        width: "20ch",
+        width: "22ch",
       },
     },
   },
@@ -179,7 +179,7 @@ function Header() {
           justifyContent: "center",
         }}
       >
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Link href={"/"}>
               <Typography

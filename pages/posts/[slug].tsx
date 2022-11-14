@@ -4,6 +4,7 @@ import Layout from "src/components/Layout";
 import { ReactElement } from "react";
 import { getPost, getPostSlugs } from "src/services/post";
 import { IPost } from "src/models/post/post";
+import Head from "next/head";
 
 type Props = {
   post: IPost;
@@ -12,6 +13,10 @@ type Props = {
 function Post({ post }: Props) {
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Typography variant="h5" marginBottom="20px">
         {post.title}
       </Typography>
