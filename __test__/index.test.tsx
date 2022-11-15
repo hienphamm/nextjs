@@ -1,11 +1,14 @@
-import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import About from "pages/about";
+import { render, screen, waitFor } from "@testing-library/react";
 import Home from "pages";
+import { getPosts } from "src/services/post";
 
 describe("Home", () => {
-  it("renders a heading", async () => {
-    render(<Home />);
-    waitFor(() => expect(screen.findByRole("button")).not.toBeDisabled());
+  beforeAll(() => console.log("1 - beforeAll"));
+  afterAll(() => console.log("1 - afterAll"));
+  beforeEach(() => console.log("1 - beforeEach"));
+  afterEach(() => console.log("1 - afterEach"));
+  it("renders a headings", () => {
+    expect(true).toBe(true);
   });
 });

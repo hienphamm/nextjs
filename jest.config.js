@@ -30,12 +30,13 @@ const customJestConfig = {
     // },
   },
   displayName: "NEXT-APP CLIENT",
-  watch: true,
-  /**
-   * A number limiting the number of tests that are allowed to run at the same time when using test.concurrent.
-   * Any test above this limit will be queued and executed once a slot is released.
-   */
+  // /**
+  //  * A number limiting the number of tests that are allowed to run at the same time when using test.concurrent.
+  //  * Any test above this limit will be queued and executed once a slot is released.
+  //  */
   maxConcurrency: 5,
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+  testEnvironment: "node",
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

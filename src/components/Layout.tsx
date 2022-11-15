@@ -21,7 +21,7 @@ import JwtProvider from "src/utils/jwt";
 import CommonModal from "./Modal";
 import { useSnackbar } from "notistack";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { blue600 } from "@app/styles/variables";
+import { blue600 } from "../../styles/variables";
 
 interface Props {
   children: JSX.Element;
