@@ -1,14 +1,29 @@
 import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  getDefaultNormalizer,
+  prettyDOM,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import Home from "pages";
-import { getPosts } from "src/services/post";
 
 describe("Home", () => {
-  beforeAll(() => console.log("1 - beforeAll"));
-  afterAll(() => console.log("1 - afterAll"));
-  beforeEach(() => console.log("1 - beforeEach"));
-  afterEach(() => console.log("1 - afterEach"));
-  it("renders a headings", () => {
-    expect(true).toBe(true);
+  it("renders a headings", async () => {
+    render(<Home />);
+    // Matching a regex:
+    // const element2 = screen.findAllByText(/BLO/, {
+    //   exact: true,
+    //   normalizer: getDefaultNormalizer({ trim: false }),
+    // });
+    // Matching with a custom function:
+    const element = screen.findAllByText((content) =>
+      content.startsWith("Blog"),
+    );
+    waitFor(() =>
+      screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
+    );
+    waitFor(() => screen.debug(screen.getByText("Javascript 2")));
+    waitFor(() => expect(element).toBeInTheDocument());
   });
 });

@@ -36,7 +36,7 @@ const customJestConfig = {
   //  */
   maxConcurrency: 5,
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

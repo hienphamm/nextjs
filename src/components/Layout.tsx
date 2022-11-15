@@ -79,7 +79,7 @@ function Header() {
     useAuthContext();
   const [tabs] = useState([
     {
-      title: "Blog",
+      title: "Blog  ",
       href: "/",
     },
     {
