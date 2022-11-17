@@ -17,12 +17,13 @@ describe("Home", () => {
     //   normalizer: getDefaultNormalizer({ trim: false }),
     // });
     // Matching with a custom function:
-    const element = screen.getByText("hehe");
+    // const element = screen.getByText("hehe");
+    const a: string = 5;
 
     // waitFor(() =>
     //   screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
     // );
     // waitFor(() => screen.debug(screen.getByText("Javascript 2")));
-    expect(element).toBeInTheDocument();
+    expect(a).toBe(5);
   });
 });
