@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "test": "jest --watch --silent=false"
+    "test": "jest --watch --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

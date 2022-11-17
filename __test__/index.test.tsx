@@ -9,7 +9,7 @@ import {
 import Home from "pages";
 
 describe("Home", () => {
-  it("renders a headings", async () => {
+  it("renders a heading", () => {
     render(<Home />);
     // Matching a regex:
     // const element2 = screen.findAllByText(/BLO/, {
@@ -17,13 +17,12 @@ describe("Home", () => {
     //   normalizer: getDefaultNormalizer({ trim: false }),
     // });
     // Matching with a custom function:
-    const element = screen.findAllByText((content) =>
-      content.startsWith("Blog"),
-    );
-    waitFor(() =>
-      screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
-    );
-    waitFor(() => screen.debug(screen.getByText("Javascript 2")));
-    waitFor(() => expect(element).toBeInTheDocument());
+    const element = screen.getByText("hehe");
+
+    // waitFor(() =>
+    //   screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
+    // );
+    // waitFor(() => screen.debug(screen.getByText("Javascript 2")));
+    expect(element).toBeInTheDocument();
   });
 });

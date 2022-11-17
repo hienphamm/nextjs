@@ -18,7 +18,6 @@ const Home = ({ posts }: Props) => {
         <title>Home</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      hehe
       <Grid container spacing={2}>
         {posts?.map((post: IPost, index) => (
           <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
