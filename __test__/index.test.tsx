@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import {
   getDefaultNormalizer,
   prettyDOM,
@@ -17,13 +16,13 @@ describe("Home", () => {
     //   normalizer: getDefaultNormalizer({ trim: false }),
     // });
     // Matching with a custom function:
-    // const element = screen.getByText("hehe");
-    const a: string = 5;
+    const element = screen.getByText("hehe");
+    // const a : string = 5
 
     // waitFor(() =>
     //   screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
     // );
     // waitFor(() => screen.debug(screen.getByText("Javascript 2")));
-    expect(a).toBe(5);
+    expect(element).toBeInTheDocument();
   });
 });

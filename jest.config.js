@@ -1,17 +1,8 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-const nextJest = require("next/jest");
-
-const createJestConfig = nextJest({
-  dir: "./",
-});
-
-const tsJest = {
-  preset: "ts-jest",
-  testEnvironment: "jest-environment-jsdom",
-};
-// Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
-const customJestConfig = {
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = {
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
@@ -40,9 +31,13 @@ const customJestConfig = {
   //  */
   maxConcurrency: 5,
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+  // ts-jest
+  preset: "ts-jest",
   testEnvironment: "jsdom",
-  ...tsJest,
+  globals: {
+    "ts-jest": {
+      tsconfig: "./tsconfig.jest.json",
+    },
+  },
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 };
-
-// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-module.exports = createJestConfig(customJestConfig);
