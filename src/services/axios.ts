@@ -3,10 +3,10 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-} from "axios";
+} from 'axios';
 
 export default function axiosInstance(
-  options: AxiosRequestConfig,
+  options: AxiosRequestConfig
 ): AxiosInstance {
   const axiosInstance = axios.create(options);
 
@@ -19,7 +19,7 @@ export default function axiosInstance(
     },
     (error: AxiosError) => {
       return Promise.reject(error.response?.data);
-    },
+    }
   );
 
   return axiosInstance;

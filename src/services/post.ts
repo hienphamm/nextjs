@@ -1,5 +1,5 @@
-import { url } from "./config";
-import { httpClient } from "./http.client";
+import { url } from './config';
+import { httpClient } from './http.client';
 
 export const getPosts = (search?: string) => {
   return httpClient().get(url.getPosts, {

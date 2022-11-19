@@ -30,7 +30,7 @@ export interface DeleteCommentParams {
   commentId?: string;
 }
 
-type CommentStatus = "show" | "hide";
+type CommentStatus = 'show' | 'hide';
 
 export interface ToggleComment {
   id: string;

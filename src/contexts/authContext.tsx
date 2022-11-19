@@ -7,10 +7,10 @@ import {
   useContext,
   useEffect,
   useState,
-} from "react";
-import { Profile } from "src/models/profile/profile";
-import { getProfile } from "src/services/auth";
-import JwtProvider from "src/utils/jwt";
+} from 'react';
+import { Profile } from 'src/models/profile/profile';
+import { getProfile } from 'src/services/auth';
+import JwtProvider from 'src/utils/jwt';
 
 interface IAuthContext {
   isAuthenticated: boolean;

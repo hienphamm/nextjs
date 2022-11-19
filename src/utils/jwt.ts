@@ -1,11 +1,12 @@
-import jwtDecode, { JwtPayload } from "jwt-decode";
-import { logout, refreshToken } from "src/services/auth";
+import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { logout, refreshToken } from 'src/services/auth';
 
 const JwtProvider = () => {
   let token: string | null = null;
   let refreshTokenTimeoutId: number | null = null;
 
-  const LOGOUT_EVENT = "jwt-logout";
+  
+          const LOGOUT_EVENT = 'jwt-logout';
 
   const getToken = () => token;
 
@@ -14,13 +15,13 @@ const JwtProvider = () => {
 
     const decoded = jwtDecode<JwtPayload & { userId: string }>(accessToken);
 
-    setRefreshTokenTimeout(
-      Number(decoded.exp as number) - Number(decoded.iat as number),
+    await setRefreshTokenTimeout(
+      Number(decoded.exp as number) - Number(decoded.iat as number)
     );
   };
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("storage", (event) => {
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', (event) => {
       if (event.key === LOGOUT_EVENT) token = null;
     });
   }
@@ -38,7 +39,7 @@ const JwtProvider = () => {
         if (status === 200) {
           token = null;
           abortRefreshToken();
-          window.location.href = "/";
+          window.location.href = '/';
         }
       })
       .catch((err) => {

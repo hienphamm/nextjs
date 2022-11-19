@@ -1,6 +1,6 @@
-import { Login, Register } from "src/models/auth/auth";
-import { url } from "./config";
-import { httpClient } from "./http.client";
+import { Login, Register } from 'src/models/auth/auth';
+import { url } from './config';
+import { httpClient } from './http.client';
 
 export const register = (payload: Register) => {
   return httpClient().post(url.register, payload);

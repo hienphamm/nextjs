@@ -6,9 +6,9 @@ module.exports = {
   // Add more setup options before each test is run
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
-  moduleDirectories: ["node_modules", "<rootDir>/"],
+  moduleDirectories: ['node_modules', '<rootDir>/'],
   verbose: true,
-  collectCoverageFrom: ["**/*.{tsx}", "!**/node_modules/**", "!**/vendor/**"],
+  collectCoverageFrom: ['**/*.{tsx}', '!**/node_modules/**', '!**/vendor/**'],
   collectCoverage: true,
   // The directory where Jest should output its coverage files.
   // coverageDirectory: "dist",
@@ -24,20 +24,20 @@ module.exports = {
     //   statements: 20,
     // },
   },
-  displayName: "NEXT-APP CLIENT",
+  displayName: 'NEXT-APP CLIENT',
   // /**
   //  * A number limiting the number of tests that are allowed to run at the same time when using test.concurrent.
   //  * Any test above this limit will be queued and executed once a slot is released.
   //  */
   maxConcurrency: 5,
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$',
   // ts-jest
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
   globals: {
-    "ts-jest": {
-      tsconfig: "./tsconfig.jest.json",
+    'ts-jest': {
+      tsconfig: './tsconfig.jest.json',
     },
   },
-  setupFilesAfterEnv: ["./jest.setup.ts"],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
 };

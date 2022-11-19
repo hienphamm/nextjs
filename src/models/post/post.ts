@@ -1,4 +1,4 @@
-import { Tag } from "../tag/tag";
+import { Tag } from '../tag/tag';
 
 export interface PostFilterParams {
   start: number;

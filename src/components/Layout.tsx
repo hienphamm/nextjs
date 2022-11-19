@@ -1,70 +1,70 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import { Button, Stack, TextField } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { alpha, styled } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { FormEvent, useEffect, useRef, useState } from "react";
-import { useAuthContext } from "src/contexts/authContext";
-import { login } from "src/services/auth";
-import JwtProvider from "src/utils/jwt";
-import CommonModal from "./Modal";
-import { useSnackbar } from "notistack";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { blue600 } from "../../styles/variables";
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import { Button, Stack, TextField } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { alpha, styled } from '@mui/material/styles';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import { useAuthContext } from 'src/contexts/authContext';
+import { login } from 'src/services/auth';
+import JwtProvider from 'src/utils/jwt';
+import CommonModal from './Modal';
+import { useSnackbar } from 'notistack';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { blue600 } from '../../styles/variables';
 
 interface Props {
   children: JSX.Element;
 }
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
+  '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
   marginRight: theme.spacing(3),
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
-    width: "auto",
+    width: 'auto',
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
+  color: 'inherit',
+  '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "22ch",
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '22ch',
       },
     },
   },
@@ -79,26 +79,26 @@ function Header() {
     useAuthContext();
   const [tabs] = useState([
     {
-      title: "Blog  ",
-      href: "/",
+      title: 'Blog  ',
+      href: '/',
     },
     {
-      title: "About",
-      href: "/about",
+      title: 'About',
+      href: '/about',
     },
     {
-      title: "Popular",
-      href: "/popular",
+      title: 'Popular',
+      href: '/popular',
     },
   ]);
 
   const [isVisibleAuthModal, setIsVisibleAuthModal] = useState(false);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null,
+    null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null,
+    null
   );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -116,11 +116,11 @@ function Header() {
     setAnchorElUser(null);
   };
 
-  const settings = ["Profile", "Logout"];
+  const settings = ['Profile', 'Logout'];
 
   const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   useEffect(() => {
@@ -135,21 +135,21 @@ function Header() {
         const { status, data } = result;
         if (status === 200) {
           setFormValues({
-            email: "",
-            password: "",
+            email: '',
+            password: '',
           });
           JwtProvider.setToken(data.accessToken);
           setIsAuthenticated(true);
           setIsVisibleAuthModal(false);
-          enqueueSnackbar("Login successfully", {
-            variant: "success",
+          enqueueSnackbar('Login successfully', {
+            variant: 'success',
           });
         }
       })
       .catch((err) => {
         console.log(err);
-        enqueueSnackbar(err?.message || "Failed to login", {
-          variant: "error",
+        enqueueSnackbar(err?.message || 'Failed to login', {
+          variant: 'error',
         });
       })
       .finally(() => {
@@ -166,7 +166,7 @@ function Header() {
 
   function stringAvatar(name: string) {
     return {
-      children: name && `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: name && `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
   }
 
@@ -176,31 +176,31 @@ function Header() {
         position="static"
         style={{
           height: 55,
-          justifyContent: "center",
+          justifyContent: 'center',
         }}
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Link href={"/"}>
+            <Link href={'/'}>
               <Typography
                 variant="h6"
                 noWrap
                 sx={{
                   mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
                   fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "white",
-                  textDecoration: "none",
-                  cursor: "pointer",
+                  letterSpacing: '.3rem',
+                  color: 'white',
+                  textDecoration: 'none',
+                  cursor: 'pointer',
                 }}
               >
                 NEWS
               </Typography>
             </Link>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -215,18 +215,18 @@ function Header() {
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  vertical: 'top',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: 'block', md: 'none' },
                 }}
               >
                 {tabs.map((page, index) => (
@@ -235,7 +235,7 @@ function Header() {
                     onClick={handleCloseNavMenu}
                     sx={{
                       backgroundColor:
-                        router.pathname === page.href ? blue600 : "unset",
+                        router.pathname === page.href ? blue600 : 'unset',
                     }}
                   >
                     <Link href={page.href}>
@@ -246,18 +246,18 @@ function Header() {
               </Menu>
             </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {tabs.map((page, index) => (
                 <MenuItem
                   key={index}
                   onClick={handleCloseNavMenu}
                   sx={{
                     backgroundColor:
-                      router.pathname === page.href ? blue600 : "unset",
+                      router.pathname === page.href ? blue600 : 'unset',
                   }}
                 >
                   <Link href={page.href}>
-                    <Typography textAlign="center" color={"white"}>
+                    <Typography textAlign="center" color={'white'}>
                       {page.title}
                     </Typography>
                   </Link>
@@ -271,7 +271,7 @@ function Header() {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
+                inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
 
@@ -280,17 +280,17 @@ function Header() {
                 <Avatar {...stringAvatar(profile.username)} />
               </IconButton>
               <Menu
-                sx={{ mt: "45px" }}
+                sx={{ mt: '45px' }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right',
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right',
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
@@ -309,7 +309,7 @@ function Header() {
                         <Typography
                           textAlign="center"
                           onClick={() => {
-                            if (setting === "Logout") {
+                            if (setting === 'Logout') {
                               onLogout();
                             }
                           }}
@@ -328,7 +328,7 @@ function Header() {
 
       <CommonModal
         isVisible={isVisibleAuthModal}
-        title={"Login"}
+        title={'Login'}
         handleClose={() => setIsVisibleAuthModal(false)}
         footer={
           <>
@@ -352,7 +352,7 @@ function Header() {
                 size="small"
                 fullWidth
                 id="email"
-                type={"email"}
+                type={'email'}
                 label="Email"
                 variant="outlined"
                 required
@@ -381,7 +381,7 @@ function Header() {
 function Footer() {
   return (
     <Box>
-      <Typography textAlign={"center"} my={3}>
+      <Typography textAlign={'center'} my={3}>
         Blog created by Hien Pham
       </Typography>
     </Box>

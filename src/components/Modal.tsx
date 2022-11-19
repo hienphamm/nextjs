@@ -4,7 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-} from "@mui/material/";
+} from '@mui/material/';
 
 interface ModalProps {
   children: JSX.Element;
@@ -30,12 +30,12 @@ function CommonModal({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       fullWidth
-      maxWidth={"xs"}
+      maxWidth={'xs'}
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        {typeof footer === "boolean" && footer !== null && footer === true ? (
+        {typeof footer === 'boolean' && footer !== null && footer === true ? (
           <>
             <Button onClick={handleClose}>Cancel</Button>
             <Button variant="contained" onClick={onSubmit}>

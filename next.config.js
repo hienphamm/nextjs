@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
+const path = require('path');
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
+    includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: ["images.dog.ceo"],
+    domains: ['images.dog.ceo'],
   },
   env: {
-    username: "Hien Pham",
+    username: 'Hien Pham',
   },
   // basePath: "/home",
   // For example, if you reconfigure .ts page extensions to .page.ts, you would need to rename pages like _app.page.ts.
@@ -19,6 +19,9 @@ const nextConfig = {
   // devIndicators: {
   //   buildActivityPosition: "top-right",
   // },
+  eslint:{
+    dirs:['pages','src']
+  }
 };
 
 module.exports = nextConfig;
