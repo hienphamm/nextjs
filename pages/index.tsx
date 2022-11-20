@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { ReactElement } from 'react';
@@ -6,23 +6,41 @@ import { IPost } from 'src/models/post/post';
 import { getPosts } from 'src/services/post';
 import Card from '../src/components/Card';
 import Layout from '../src/components/Layout';
+import React, { useState, useEffect } from 'react';
 
 interface Props {
   posts?: IPost[];
+  onMoney?: any;
 }
 
-const Home = ({ posts }: Props) => {
+const Home = ({ posts, onMoney }: Props) => {
+  const [value, setValue] = useState<string>('1');
+  const [isBig, setIsBig] = useState(false);
+
+  useEffect(() => {
+    if (+value > 10) {
+      setTimeout(() => {
+        setIsBig(true);
+      }, 500);
+    }
+  }, [value]);
+
   return (
     <>
       <Head>
         <title>Home</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      <label htmlFor="label">Username</label>
+      <input
+        type="text"
+        id="label"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <Button onClick={() => onMoney && onMoney(33)}>Click me</Button>
+      {!isBig ? 'Show' : null}
       <Grid container spacing={2}>
-
-
-
-        
         {posts?.map((post: IPost, index) => (
           <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
             <Card
@@ -44,10 +62,12 @@ Home.getLayout = function getLayout(page: ReactElement) {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { posts } = (await getPosts()).data;
+  const { posts } = (await getPosts()).data as {
+    posts: IPost[];
+  };
   return {
     props: {
-      posts: posts,
+      posts,
     },
     revalidate: 10,
   };

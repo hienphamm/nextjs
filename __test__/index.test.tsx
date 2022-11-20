@@ -1,14 +1,13 @@
 import {
-  getDefaultNormalizer,
-  prettyDOM,
+  fireEvent,
   render,
   screen,
-  waitFor,
-} from "@testing-library/react";
-import Home from "pages";
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
+import Home from 'pages';
 
-describe("Home", () => {
-  it("renders a heading", () => {
+describe('Home', () => {
+  it('renders a heading', async () => {
     render(<Home />);
     // Matching a regex:
     // const element2 = screen.findAllByText(/BLO/, {
@@ -16,13 +15,19 @@ describe("Home", () => {
     //   normalizer: getDefaultNormalizer({ trim: false }),
     // });
     // Matching with a custom function:
-    const element = screen.getByText("hehe");
+    const element = screen.getByLabelText('Username');
+    fireEvent.change(element, {
+      target: {
+        value: '123',
+      },
+    });
     // const a : string = 5
 
     // waitFor(() =>
     //   screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
     // );
     // waitFor(() => screen.debug(screen.getByText("Javascript 2")));
-    expect(element).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Show'));
+    expect(screen.queryByText('Show')).not.toBeInTheDocument();
   });
 });
