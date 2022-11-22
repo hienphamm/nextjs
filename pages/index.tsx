@@ -6,24 +6,15 @@ import { IPost } from 'src/models/post/post';
 import { getPosts } from 'src/services/post';
 import Card from '../src/components/Card';
 import Layout from '../src/components/Layout';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface Props {
   posts?: IPost[];
-  onMoney?: any;
+  onMoney?: (value: number) => void;
 }
 
 const Home = ({ posts, onMoney }: Props) => {
   const [value, setValue] = useState<string>('1');
-  const [isBig, setIsBig] = useState(false);
-
-  useEffect(() => {
-    if (+value > 10) {
-      setTimeout(() => {
-        setIsBig(true);
-      }, 500);
-    }
-  }, [value]);
 
   return (
     <>
@@ -39,7 +30,6 @@ const Home = ({ posts, onMoney }: Props) => {
         onChange={(event) => setValue(event.target.value)}
       />
       <Button onClick={() => onMoney && onMoney(33)}>Click me</Button>
-      {!isBig ? 'Show' : null}
       <Grid container spacing={2}>
         {posts?.map((post: IPost, index) => (
           <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
