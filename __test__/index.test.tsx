@@ -1,9 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Home from 'pages';
 
 describe('Home', () => {
@@ -27,7 +22,5 @@ describe('Home', () => {
     //   screen.logTestingPlaygroundURL(screen.getByText("Javascript 2")),
     // );
     // waitFor(() => screen.debug(screen.getByText("Javascript 2")));
-    await waitForElementToBeRemoved(() => screen.queryByText('Show'));
-    expect(screen.queryByText('Show')).not.toBeInTheDocument();
   });
 });

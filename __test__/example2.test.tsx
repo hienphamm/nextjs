@@ -1,8 +1,9 @@
 // import Layout from '@app/components/Layout';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Home from 'pages';
+import NotFound from 'pages/404';
 
-jest.mock('@app/components/Layout', () => ({
+jest.mock('../src/components/Layout.tsx', () => ({
   Layout: jest.fn(({ children }) => <div>{children}</div>),
 }));
 
@@ -19,9 +20,8 @@ describe('My Component', () => {
     expect(onMoney).toHaveBeenCalledWith(33);
   });
 
-  it("Should open modal when click button 'Login'", () => {
-    const element = screen.getByText('Login');
-    fireEvent.click(element);
-    // expect(Layoutscreen.getByLabelText('Email')).toBeInTheDocument();
+  it('Not Found Page', () => {
+    const { container } = render(<NotFound />);
+    expect(container).toHaveTextContent('Page Not Found');
   });
 });
