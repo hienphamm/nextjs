@@ -4,13 +4,8 @@ import { ReactElement } from "react";
 import Layout from "../src/components/Layout";
 import { NextPageWithLayout } from "./_app";
 
-type Props = {};
 
-const About: NextPageWithLayout = ({}: Props) => {
-  const sum = ()=>{
-    let a = 5;
-    return a+1+1
-  }
+const About: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -18,7 +13,7 @@ const About: NextPageWithLayout = ({}: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Typography textAlign="center" justifyContent="center">
-        My name is {process.env.username} {sum()}
+        My name is {process.env.username}
       </Typography>
     </>
   );

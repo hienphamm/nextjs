@@ -1,5 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { Button, Stack, TextField } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
@@ -13,18 +14,15 @@ import { alpha, styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { useAuthContext } from 'src/contexts/authContext';
 import { login } from 'src/services/auth';
 import JwtProvider from 'src/utils/jwt';
 import CommonModal from './Modal';
-import { useSnackbar } from 'notistack';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { blue600 } from '../../styles/variables';
 
 interface Props {
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 const Search = styled('div')(({ theme }) => ({
@@ -71,7 +69,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Header() {
-  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const formRef = useRef<any>();
   const [loading, setLoading] = useState(false);
@@ -138,7 +135,7 @@ function Header() {
             email: '',
             password: '',
           });
-          JwtProvider.setToken(data.accessToken);
+          void JwtProvider.setToken(data.accessToken);
           setIsAuthenticated(true);
           setIsVisibleAuthModal(false);
           enqueueSnackbar('Login successfully', {
@@ -148,6 +145,7 @@ function Header() {
       })
       .catch((err) => {
         console.log(err);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
         enqueueSnackbar(err?.message || 'Failed to login', {
           variant: 'error',
         });
@@ -233,10 +231,10 @@ function Header() {
                   <MenuItem
                     key={index}
                     onClick={handleCloseNavMenu}
-                    sx={{
-                      backgroundColor:
-                        router.pathname === page.href ? blue600 : 'unset',
-                    }}
+                    // sx={{
+                    //   backgroundColor:
+                    //     router.pathname === page.href ? blue600 : 'unset',
+                    // }}
                   >
                     <Link href={page.href}>
                       <Typography textAlign="center">{page.title}</Typography>
@@ -251,10 +249,10 @@ function Header() {
                 <MenuItem
                   key={index}
                   onClick={handleCloseNavMenu}
-                  sx={{
-                    backgroundColor:
-                      router.pathname === page.href ? blue600 : 'unset',
-                  }}
+                  // sx={{
+                  //   backgroundColor:
+                  //     router.pathname === page.href ? blue600 : 'unset',
+                  // }}
                 >
                   <Link href={page.href}>
                     <Typography textAlign="center" color={'white'}>
@@ -328,7 +326,7 @@ function Header() {
 
       <CommonModal
         isVisible={isVisibleAuthModal}
-        title={'Login'}
+        title={'Meo Meo'}
         handleClose={() => setIsVisibleAuthModal(false)}
         footer={
           <>
@@ -337,6 +335,7 @@ function Header() {
               loading={loading}
               variant="contained"
               onClick={() => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                 formRef.current && formRef.current.requestSubmit();
               }}
             >

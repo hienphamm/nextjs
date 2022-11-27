@@ -13,7 +13,7 @@ import createEmotionCache from "src/utils/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
 import { SnackbarProvider } from "notistack";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = Record<string,unknown>, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -39,6 +39,7 @@ const theme = createTheme({
 const clientSideEmotionCache = createEmotionCache();
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { on, off } = Router.events;
 
   const getLayout = Component.getLayout ?? ((page) => page);

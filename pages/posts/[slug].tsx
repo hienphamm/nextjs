@@ -31,10 +31,18 @@ Post.getLayout = function getLayout(page: ReactElement) {
 
 export default Post;
 
+interface Slug {
+  _id: string,
+  slug: string
+}
+
+interface Response {
+  slugs: Slug[]
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await getPostSlugs();
-  const data = (await res).data?.slugs;
-  const paths = data?.map((x: IPost) => ({
+  const data = (await getPostSlugs()).data as Response;
+  const paths = data.slugs?.map((x: Slug) => ({
     params: {
       slug: x.slug || x._id,
     },
@@ -50,8 +58,9 @@ export const getStaticProps: GetStaticProps<{ post: IPost }> = async (
   context,
 ) => {
   const slug = context.params?.slug as string;
-  const res = await getPost(slug);
-  const data = (await res).data;
+  const data = (await getPost(slug)).data as {
+    post: IPost
+  };
 
   if (!data) {
     return {

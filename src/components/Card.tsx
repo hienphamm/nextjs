@@ -9,7 +9,6 @@ import { IPost } from 'src/models/post/post';
 
 function ReviewCard({
   title,
-  content,
   slug,
   image,
   previewContent,

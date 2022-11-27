@@ -14,6 +14,7 @@ export default function axiosInstance(
     (response) => {
       return {
         status: response.status,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         data: response.data,
       } as AxiosResponse;
     },

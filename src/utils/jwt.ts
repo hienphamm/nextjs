@@ -5,17 +5,16 @@ const JwtProvider = () => {
   let token: string | null = null;
   let refreshTokenTimeoutId: number | null = null;
 
-  
-          const LOGOUT_EVENT = 'jwt-logout';
+  const LOGOUT_EVENT = 'jwt-logout';
 
   const getToken = () => token;
 
-  const setToken = async (accessToken: string) => {
+  const setToken = (accessToken: string) => {
     token = accessToken;
 
     const decoded = jwtDecode<JwtPayload & { userId: string }>(accessToken);
 
-    await setRefreshTokenTimeout(
+    setRefreshTokenTimeout(
       Number(decoded.exp as number) - Number(decoded.iat as number)
     );
   };
@@ -65,9 +64,9 @@ const JwtProvider = () => {
     return success;
   };
 
-  const setRefreshTokenTimeout = (delay: number) =>
+  const setRefreshTokenTimeout =  (delay: number) =>
     (refreshTokenTimeoutId = window.setTimeout(() => {
-      getRefreshToken();
+     void getRefreshToken();
     }, delay * 1000 - 10000));
 
   return { getToken, setToken, getRefreshToken, deleteToken };

@@ -43,7 +43,9 @@ Popular.getLayout = function getLayout(page: ReactElement) {
 export const getServerSideProps: GetServerSideProps<{
   posts: IPost[];
 }> = async () => {
-  const { posts } = (await getPosts("popular")).data;
+  const { posts } = (await getPosts("popular")).data as {
+    posts: IPost[]
+  };
 
   return {
     props: {
