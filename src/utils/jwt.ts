@@ -64,9 +64,9 @@ const JwtProvider = () => {
     return success;
   };
 
-  const setRefreshTokenTimeout =  (delay: number) =>
+  const setRefreshTokenTimeout = (delay: number) =>
     (refreshTokenTimeoutId = window.setTimeout(() => {
-     void getRefreshToken();
+      void getRefreshToken();
     }, delay * 1000 - 10000));
 
   return { getToken, setToken, getRefreshToken, deleteToken };

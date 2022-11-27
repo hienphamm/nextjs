@@ -19,9 +19,9 @@ export const login = (
 };
 
 export const refreshToken = (): Promise<
-AxiosResponse<{
-  accessToken: string;
-}>
+  AxiosResponse<{
+    accessToken: string;
+  }>
 > => {
   return httpClient().get(url.refreshToken);
 };

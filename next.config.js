@@ -19,9 +19,9 @@ const nextConfig = {
   // devIndicators: {
   //   buildActivityPosition: "top-right",
   // },
-  eslint:{
-    dirs:['pages','src']
-  }
+  eslint: {
+    dirs: ['pages', 'src'],
+  },
 };
 
 module.exports = nextConfig;
