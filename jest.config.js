@@ -8,17 +8,17 @@ module.exports = {
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ['node_modules', '<rootDir>/'],
   verbose: true,
-  collectCoverageFrom: ['**/*.{tsx}', '!**/node_modules/**', '!**/vendor/**'],
+  collectCoverageFrom: ['./__tests__/pages/**'],
   collectCoverage: true,
   // The directory where Jest should output its coverage files.
   // coverageDirectory: "dist",
   // Every remaining file combined has less than 50% coverage (global).
   coverageThreshold: {
     global: {
-      branches: 50,
-      functions: 50,
-      lines: 50,
-      statements: 50,
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
     },
     // "__test__/*.tsx": {
     //   statements: 20,
@@ -43,6 +43,6 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+  testRegex: '(/__tests__/pages/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };

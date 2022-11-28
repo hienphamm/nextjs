@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "test": "jest --watchAll",
+    "test": "jest  --coverage --watchAll",
     "test:ci": "jest --coverage --silent --ci",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
@@ -54,7 +54,9 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "sass": "^1.56.0",
-    "ts-jest": "^29.0.3"
+    "ts-jest": "^29.0.3",
+    "whatwg-fetch": "^3.6.2",
+    "msw": "^0.49.1"
   },
   "lint-staged": {
     "*.(tsx|ts)": "eslint --cache --fix",

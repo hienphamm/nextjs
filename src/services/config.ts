@@ -2,15 +2,15 @@ import { AxiosRequestConfig } from 'axios';
 
 const env = process.env.NODE_ENV;
 
-let URL = 'https://hienpham-blog-api.herokuapp.com/api/v1/';
+export let API_URL = 'https://hienpham-blog-api.herokuapp.com/api/v1/';
 if (env == 'development') {
-  URL = 'http://localhost:3002/api/v1/';
+  API_URL = 'https://hienpham-blog-api.herokuapp.com/api/v1/';
 } else if (env == 'production') {
-  URL = 'https://hienpham-blog-api.herokuapp.com/api/v1/';
+  API_URL = 'https://hienpham-blog-api.herokuapp.com/api/v1/';
 }
 
 export const config: AxiosRequestConfig = {
-  baseURL: URL,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },

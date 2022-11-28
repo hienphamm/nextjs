@@ -1,19 +1,22 @@
-import "@app/styles/App.scss";
-import { NextPage } from "next";
-import type { AppProps } from "next/app";
-import { Router } from "next/router";
-import NProgress from "nprogress";
-import { ReactElement, ReactNode, useEffect } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { primaryColor } from "@app/styles/variables";
-import CssBaseline from "@mui/material/CssBaseline";
-import { Container } from "@mui/material";
-import AuthContextProvider from "src/contexts/authContext";
-import createEmotionCache from "src/utils/createEmotionCache";
-import { CacheProvider } from "@emotion/react";
-import { SnackbarProvider } from "notistack";
+import '../styles/App.scss';
+import { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import { Router } from 'next/router';
+import NProgress from 'nprogress';
+import { ReactElement, ReactNode, useEffect } from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { primaryColor } from '@app/styles/variables';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Container } from '@mui/material';
+import AuthContextProvider from 'src/contexts/authContext';
+import createEmotionCache from 'src/utils/createEmotionCache';
+import { CacheProvider } from '@emotion/react';
+import { SnackbarProvider } from 'notistack';
 
-export type NextPageWithLayout<P = Record<string,unknown>, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = Record<string, unknown>, IP = P> = NextPage<
+  P,
+  IP
+> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -21,7 +24,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: `${primaryColor}`,
@@ -29,8 +32,8 @@ const theme = createTheme({
   },
   typography: {
     button: {
-      textTransform: "capitalize",
-      fontSize: "1rem",
+      textTransform: 'capitalize',
+      fontSize: '1rem',
     },
   },
 });
@@ -48,13 +51,13 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     const handleRouteStart = () => NProgress.start();
     const handleRouteDone = () => NProgress.done();
 
-    on("routeChangeStart", handleRouteStart);
-    on("routeChangeComplete", handleRouteDone);
-    on("routeChangeError", handleRouteDone);
+    on('routeChangeStart', handleRouteStart);
+    on('routeChangeComplete', handleRouteDone);
+    on('routeChangeError', handleRouteDone);
     return () => {
-      off("routeChangeStart", handleRouteStart);
-      off("routeChangeComplete", handleRouteDone);
-      off("routeChangeError", handleRouteDone);
+      off('routeChangeStart', handleRouteStart);
+      off('routeChangeComplete', handleRouteDone);
+      off('routeChangeError', handleRouteDone);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -65,8 +68,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         <SnackbarProvider
           maxSnack={1}
           anchorOrigin={{
-            horizontal: "center",
-            vertical: "top",
+            horizontal: 'center',
+            vertical: 'top',
           }}
           autoHideDuration={2000}
         >
@@ -79,7 +82,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
                 }}
               >
                 <Component {...pageProps} />
-              </Container>,
+              </Container>
             )}
           </AuthContextProvider>
         </SnackbarProvider>

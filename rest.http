@@ -1,1 +1,1 @@
-GET https://hienpham-blog-api.herokuapp.com/api/v1/posts/slugs
+GET https://hienpham-blog-api.herokuapp.com/api/v1/posts
