@@ -64,5 +64,8 @@
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
   },
-  "postinstall": "husky install"
+  "postinstall": "husky install",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }

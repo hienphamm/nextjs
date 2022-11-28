@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import { API_URL } from 'src/services/config';
 
-const mockedPosts = [
+export const mockedPosts = [
   {
     _id: '62d57300cd396ef30b476135',
     title: 'Docker Desktop 1904',
