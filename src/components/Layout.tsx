@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Header() {
+export function Header() {
   const { enqueueSnackbar } = useSnackbar();
   const formRef = useRef<any>();
   const [loading, setLoading] = useState(false);

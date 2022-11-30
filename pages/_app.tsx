@@ -5,7 +5,7 @@ import { Router } from 'next/router';
 import NProgress from 'nprogress';
 import { ReactElement, ReactNode, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { primaryColor } from '@app/styles/variables';
+import { primaryColor } from '../styles/variables';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/material';
 import AuthContextProvider from 'src/contexts/authContext';

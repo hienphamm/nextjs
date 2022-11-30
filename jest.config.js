@@ -7,6 +7,9 @@ module.exports = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ['node_modules', '<rootDir>/'],
+  moduleNameMapper: {
+    '@app/styles/*': '<rootDir>/styles/*',
+  },
   verbose: true,
   collectCoverageFrom: ['./__tests__/pages/**'],
   collectCoverage: true,
@@ -41,7 +44,8 @@ module.exports = {
   },
   setupFilesAfterEnv: ['./jest.setup.ts'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.(ts|tsx)?$': 'ts-jest',
+    '.+\\.(css|less|sass|scss)$': 'jest-css-modules-transform',
   },
   testRegex: '(/__tests__/pages/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
