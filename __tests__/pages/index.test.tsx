@@ -18,14 +18,36 @@ describe('Home Page', () => {
   });
 
   it('Should render all the inputs', () => {
-    const onClick = jest.fn();
     render(<Home posts={[]} />);
     const element = screen.getByText('Login');
     fireEvent.click(element);
-    expect(onClick).toHaveBeenCalledTimes(1);
-    // const email = screen.getByTestId('email');
-    // const password = screen.getByTestId('password');
+    const email = screen.getByLabelText(/email/i);
+    const password = screen.getByLabelText(/password/i);
     expect(element).toBeInTheDocument();
-    // expect(screen.getByText('Meo Meo')).toBeTruthy();
+    expect(email).toBeInTheDocument();
+    expect(password).toBeInTheDocument();
+  });
+
+  it('Should login success', () => {
+    render(<Home posts={[]} />);
+    const element = screen.getByText('Login');
+    fireEvent.click(element);
+    const email = screen.getByLabelText(/email/i);
+    const password = screen.getByLabelText(/password/i);
+    fireEvent.change(email, {
+      target: {
+        value: 'hienphamm@gmail.com',
+      },
+    });
+    fireEvent.change(password, {
+      target: {
+        value: '123456',
+      },
+    });
+    const button = screen.getByRole('button', {
+      name: 'Login',
+    });
+    fireEvent.click(button);
+    expect(button).toBeInTheDocument();
   });
 });
